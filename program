@@ -1,0 +1,16 @@
+
+start
+wrt 1 5 ; we want to print five times
+wrt 2 7 ; we want to print number 7
+go 0 print_times end
+
+
+; 1 times, 2 value to print
+print_times
+wrt 3 1 ; write a one to reg 3 to sub it
+print_next
+sub 1 3 1 ; sub value 1 (stored in 3) from the counter register 1
+prt 2 ; print whats in register 2
+go 1 end print_next
+
+end
