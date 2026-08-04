@@ -5,26 +5,22 @@ use std::collections::HashMap;
 use crate::parser::parse;
 
 fn main() {
-    let code = std::fs::read_to_string("program").unwrap();
-    let program = parse(code);
-
-    let mut machine = Machine::<16>::default();
-    machine.run(&program);
-    //println!("{}", machine.registers_as_display_string())
-    /*
-    use Instruction::*;
-    machine.run(&vec![
-        Wrt {
-            reg_target: 1,
-            value: Value(1),
-        },
-        Cpy {
-            reg_src: 1,
-            reg_target: 2,
-        },
-        Prt { reg_src: 1 },
-     ]);
-     */
+    let args: Vec<String> = std::env::args().collect();
+    if args.len() == 2 {
+        let program_path = &args[1];
+        match std::fs::read_to_string(program_path) {
+            Ok(code) => {
+                let program = parse(code);
+                let mut machine = Machine::<16>::default();
+                machine.run(&program);
+            },
+            Err(err) => {
+                eprintln!("Error reading program path: {}", err)
+            },
+        };
+    } else {
+        eprintln!("Expected a single path argument");
+    }
 }
 
 pub struct Machine<'a, const N: usize> {
