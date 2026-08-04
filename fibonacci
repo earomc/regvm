@@ -1,0 +1,26 @@
+; Program computing and printing Fibonacci numbers
+wrt 1 10    ; Total terms to generate (counter)
+wrt 2 1     ; Constant 1 for decrementing and math
+wrt 3 0     ; a = 0 (F_0)
+wrt 4 1     ; b = 1 (F_1)
+
+prt 3       ; Print F_0 (0)
+prt 4       ; Print F_1 (1)
+
+; Adjust counter for the 2 terms already printed (10 - 2 = 8 iterations remaining)
+sub 1 2 1
+sub 1 2 1
+
+go 0 fib_loop end_prog  ; Unconditional jump using register 0 (always 0)
+
+fib_loop
+add 3 4 5   ; next = a + b (stored in register 5)
+prt 5       ; Print next Fibonacci number
+
+cpy 4 3     ; Shift a: a = b (register 3 = register 4)
+cpy 5 4     ; Shift b: b = next (register 4 = register 5)
+
+sub 1 2 1   ; Decrement counter in register 1
+go 1 end_prog fib_loop  ; If reg 1 == 0, jump to end_prog; else repeat loop
+
+end_prog
