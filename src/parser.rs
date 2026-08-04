@@ -29,7 +29,6 @@ pub fn parse(code: String) -> Vec<Instruction> {
     }
     let mut state = LexingState::None;
     for char in code.chars() {
-        //println!("char: {:?}, state: {:?}", char, &state);
         if let LexingState::Comment = state {
             if !matches!(char, '\n' | '\r') {
                 continue;
@@ -87,7 +86,6 @@ pub fn parse(code: String) -> Vec<Instruction> {
         let Some(token) = tokens.next() else {
             break;
         };
-        dbg!(&token);
         match token {
             Token::Marker(marker) => {
                 program.push(Instruction::Marker(marker));

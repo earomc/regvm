@@ -10,7 +10,7 @@ fn main() {
 
     let mut machine = Machine::<16>::default();
     machine.run(&program);
-    println!("{}", machine.registers_as_display_string())
+    //println!("{}", machine.registers_as_display_string())
     /*
     use Instruction::*;
     machine.run(&vec![
@@ -27,7 +27,7 @@ fn main() {
      */
 }
 
-struct Machine<'a, const N: usize> {
+pub struct Machine<'a, const N: usize> {
     registers: [Value; N],
     markers: HashMap<&'a str, usize>,
 }

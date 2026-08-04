@@ -1,10 +1,9 @@
-
-start
-wrt 1 5 ; we want to print five times
+; Program printing the number 7 10 times
+wrt 1 10 ; we want to print 10 times
 wrt 2 7 ; we want to print number 7
 go 0 print_times end
 
-
+; calling convention:
 ; 1 times, 2 value to print
 print_times
 wrt 3 1 ; write a one to reg 3 to sub it
